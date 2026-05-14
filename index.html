@@ -13,11 +13,8 @@
       --orange: #f6a24b;
       --shadow: 7px 7px 0 rgba(0,0,0,.92);
     }
-
     * { box-sizing: border-box; }
-
     html, body { min-height: 100%; }
-
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
@@ -27,148 +24,39 @@
         linear-gradient(135deg, var(--green) 0%, #d7df73 48%, var(--orange) 100%);
       padding: 22px 14px 36px;
     }
-
-    .page {
-      width: min(720px, 100%);
-      margin: 0 auto;
-      text-align: center;
-    }
-
+    .page { width: min(720px, 100%); margin: 0 auto; text-align: center; }
     .logo {
-      width: 112px;
-      height: 112px;
-      margin: 0 auto 14px;
-      border-radius: 999px;
-      border: 4px solid #111;
-      background: #fff;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      box-shadow: 0 3px 0 rgba(0,0,0,.2);
+      width: 112px; height: 112px; margin: 0 auto 14px; border-radius: 999px;
+      border: 4px solid #111; background: #fff; display: grid; place-items: center;
+      overflow: hidden; box-shadow: 0 3px 0 rgba(0,0,0,.2);
     }
-
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .logo-fallback {
-      font-weight: 900;
-      font-size: 24px;
-      letter-spacing: -1px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(32px, 6vw, 46px);
-      line-height: 1;
-      font-weight: 900;
-      letter-spacing: -1.2px;
-    }
-
-    .handle {
-      margin: 8px 0 42px;
-      font-weight: 800;
-      font-size: 20px;
-    }
-
-    .section-title {
-      margin: 0 0 18px;
-      font-size: 20px;
-      font-weight: 900;
-    }
-
-    .links {
-      display: grid;
-      gap: 17px;
-    }
-
+    .logo img { width: 100%; height: 100%; object-fit: cover; }
+    .logo-fallback { font-weight: 900; font-size: 24px; letter-spacing: -1px; }
+    h1 { margin: 0; font-size: clamp(32px, 6vw, 46px); line-height: 1; font-weight: 900; letter-spacing: -1.2px; }
+    .handle { margin: 8px 0 42px; font-weight: 800; font-size: 20px; }
+    .section-title { margin: 0 0 18px; font-size: 20px; font-weight: 900; }
+    .links { display: grid; gap: 17px; }
     .link-card {
-      min-height: 88px;
-      display: grid;
-      grid-template-columns: 76px 1fr 36px;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: #000;
-      background: var(--card);
-      border: 4px solid #050505;
-      border-radius: 999px;
-      box-shadow: var(--shadow);
-      padding: 10px 18px 10px 10px;
+      min-height: 88px; display: grid; grid-template-columns: 76px 1fr 36px; align-items: center; gap: 8px;
+      text-decoration: none; color: #000; background: var(--card); border: 4px solid #050505;
+      border-radius: 999px; box-shadow: var(--shadow); padding: 10px 18px 10px 10px;
       transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
     }
-
-    .link-card:hover,
-    .link-card:focus-visible {
-      transform: translate(3px, 3px);
-      box-shadow: 4px 4px 0 rgba(0,0,0,.92);
-      background: rgba(255,255,255,.97);
-      outline: none;
+    .link-card:hover, .link-card:focus-visible {
+      transform: translate(3px, 3px); box-shadow: 4px 4px 0 rgba(0,0,0,.92);
+      background: rgba(255,255,255,.97); outline: none;
     }
-
-    .icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      font-size: 34px;
-      background: #bdeaff;
-      overflow: hidden;
-      justify-self: center;
-    }
-
-    .icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .title {
-      text-align: center;
-      font-size: clamp(17px, 3.3vw, 22px);
-      font-weight: 900;
-      line-height: 1.1;
-    }
-
-    .dots {
-      font-size: 28px;
-      font-weight: 900;
-      line-height: 1;
-      transform: rotate(90deg);
-      color: #444;
-    }
-
-    .footer {
-      margin-top: 34px;
-      padding: 18px 16px;
-      border: 3px solid #111;
-      border-radius: 26px;
-      background: rgba(255,255,255,.42);
-      font-weight: 800;
-      box-shadow: 5px 5px 0 rgba(0,0,0,.88);
-    }
-
-    .small {
-      margin-top: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #252525;
-    }
-
+    .icon { width: 58px; height: 58px; border-radius: 999px; display: grid; place-items: center; font-size: 34px; background: #bdeaff; overflow: hidden; justify-self: center; }
+    .icon img { width: 100%; height: 100%; object-fit: cover; }
+    .title { text-align: center; font-size: clamp(17px, 3.3vw, 22px); font-weight: 900; line-height: 1.1; }
+    .dots { font-size: 28px; font-weight: 900; line-height: 1; transform: rotate(90deg); color: #444; }
+    .footer { margin-top: 34px; padding: 18px 16px; border: 3px solid #111; border-radius: 26px; background: rgba(255,255,255,.42); font-weight: 800; box-shadow: 5px 5px 0 rgba(0,0,0,.88); }
+    .small { margin-top: 8px; font-size: 13px; font-weight: 700; color: #252525; }
     @media (max-width: 520px) {
       body { padding: 18px 9px 28px; }
       .logo { width: 90px; height: 90px; }
       .handle { margin-bottom: 34px; font-size: 17px; }
-      .link-card {
-        min-height: 74px;
-        grid-template-columns: 62px 1fr 28px;
-        border-width: 3px;
-        padding: 8px 13px 8px 8px;
-        box-shadow: 5px 5px 0 rgba(0,0,0,.92);
-      }
+      .link-card { min-height: 74px; grid-template-columns: 62px 1fr 28px; border-width: 3px; padding: 8px 13px 8px 8px; box-shadow: 5px 5px 0 rgba(0,0,0,.92); }
       .icon { width: 48px; height: 48px; font-size: 28px; }
       .dots { font-size: 24px; }
     }
@@ -176,54 +64,101 @@
 </head>
 <body>
   <main class="page">
-    <!-- Replace logo.png with your uploaded CWL1 logo file, or leave fallback text. -->
     <div class="logo">
       <img src="logo.png" alt="CWL1 logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;logo-fallback&quot;>CWL1</div>'">
     </div>
 
-    <h1>CWL1 Site News</h1>
-    <div class="handle">@cwlinformationportal</div>
-
-    <h2 class="section-title">Hot Topics</h2>
-
-    <nav class="links" aria-label="CWL1 links">
-      <!-- Upload files to GitHub, then replace href with the file name or folder path. Example: href="uploads/weekly-brief-wk20.pdf" -->
-
-      <a class="link-card" href="uploads/weekly-brief-wk20.pdf" target="_blank" rel="noopener">
-        <span class="icon">🎉</span>
-        <span class="title">CWL1: Weekly Brief WK20</span>
-        <span class="dots">⋮</span>
-      </a>
-
-      <a class="link-card" href="uploads/cwlottery-may.pdf" target="_blank" rel="noopener">
-        <span class="icon">🎱</span>
-        <span class="title">CWLottery - MAY</span>
-        <span class="dots">⋮</span>
-      </a>
-
-      <a class="link-card" href="uploads/cwl1-installment.pdf" target="_blank" rel="noopener">
-        <span class="icon">📰</span>
-        <span class="title">CWL1 InSTALLment</span>
-        <span class="dots">⋮</span>
-      </a>
-
-      <a class="link-card" href="uploads/beyond-the-badge.pdf" target="_blank" rel="noopener">
-        <span class="icon">❔</span>
-        <span class="title">Take Part - Beyond the Badge</span>
-        <span class="dots">⋮</span>
-      </a>
-
-      <a class="link-card" href="uploads/peer-recognition.pdf" target="_blank" rel="noopener">
-        <span class="icon">🏅</span>
-        <span class="title">Nominate a Peer for Recognition</span>
-        <span class="dots">⋮</span>
-      </a>
-    </nav>
+    <h1 id="pageTitle"></h1>
+    <div class="handle" id="pageHandle"></div>
+    <div id="sections"></div>
 
     <div class="footer">
-      CWL1 Communications Hub
-      <div class="small">Internal links and approved uploads only</div>
+      <span id="footerTitle"></span>
+      <div class="small" id="footerSmall"></div>
     </div>
   </main>
+
+  <script>
+    /***************************************************************
+     * EDIT THIS AREA ONLY
+     * Add/remove/reorder cards here. No HTML editing needed.
+     ***************************************************************/
+    const SITE = {
+      title: 'CWL1 Site News',
+      handle: '@cwl1informationportal',
+      sectionTitle: 'Hot Topics',
+      footerTitle: 'CWL1 Communications Hub',
+      footerSmall: 'Internal links and approved uploads only',
+      sections: [
+        {
+          heading: 'Hot Topics',
+          links: [
+            { title: 'CWL1: Weekly Brief WK20', icon: '🎉', url: 'https://qrco.de/CWL1-Brief' },
+            { title: 'CWLottery - MAY', icon: '🎱', url: '#' },
+            { title: 'CWL1 InSTALLment', icon: '📰', url: '#' },
+            { title: 'Take Part - Beyond the Badge', icon: '❔', url: '#' },
+            { title: 'Nominate a Peer for Recognition', icon: '🏅', url: '#' },
+            { title: 'Current Recognition Nominations', icon: '⭐', url: '#' },
+            { title: 'Project Refresh', icon: '🔄', url: '#' }
+          ]
+        },
+        {
+          heading: 'My Site',
+          links: [
+            { title: 'View the CWL1 Car Park Rota 2026', icon: '🅿️', url: '#' },
+            { title: 'Register for a New Car Park Pass', icon: '🚗', url: '#' },
+            { title: 'SWAG Catalogue', icon: '🛍️', url: '#' },
+            { title: 'Canteen Menu', icon: '🍽️', url: '#' },
+            { title: 'Canteen Feedback Survey', icon: '💬', url: '#' },
+            { title: 'CWL1 Music Requests', icon: '🎵', url: '#' },
+            { title: 'Maintenance Shifts 2026', icon: '🔧', url: '#' }
+          ]
+        },
+        {
+          heading: 'Diversity, Equity & Inclusion',
+          links: [
+            { title: 'Calendar of Events 2026', icon: '📅', url: '#' },
+            { title: '2026 DEI Calendar Events Suggestions', icon: '🌍', url: '#' }
+          ]
+        },
+        {
+          heading: 'PxT',
+          links: [
+            { title: 'PxT Form Submission Tool', icon: '📝', url: '#' },
+            { title: 'Digital Flu Voucher', icon: '💉', url: '#' },
+            { title: 'Health & Wellbeing Booklet', icon: '💚', url: '#' },
+            { title: 'Holiday Availability', icon: '🏖️', url: '#' },
+            { title: 'My HR Self-Service', icon: '👤', url: '#' }
+          ]
+        },
+        {
+          heading: 'Site Tools',
+          links: [
+            { title: 'Dragonfly', icon: '🐉', url: '#' },
+            { title: 'Continuous Improvement Ideas', icon: '💡', url: '#' }
+          ]
+        }
+      ]
+    };
+
+    /***************************************************************
+     * DO NOT EDIT BELOW UNLESS YOU WANT TO CHANGE HOW THE PAGE WORKS
+     ***************************************************************/
+    document.getElementById('pageTitle').textContent = SITE.title;
+    document.getElementById('pageHandle').textContent = SITE.handle;
+    const sectionsEl = document.getElementById('sections');
+    sectionsEl.innerHTML = SITE.sections.map(section => `
+      <h2 class="section-title">${section.heading}</h2>
+      <nav class="links" aria-label="${section.heading}">
+        ${section.links.map(item => `
+          <a class="link-card" href="${item.url}" target="_blank" rel="noopener">
+            <span class="icon">${item.icon}</span>
+            <span class="title">${item.title}</span>
+            <span class="dots">⋮</span>
+          </a>
+        `).join('')}
+      </nav>
+    `).join('');
+  </script>
 </body>
 </html>
