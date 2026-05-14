@@ -3,409 +3,227 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CWL1 Ops Hub</title>
+  <title>CWL1 Site News</title>
   <style>
     :root {
-      --bg: #05070b;
-      --card: rgba(17, 24, 39, 0.92);
-      --card2: rgba(31, 41, 55, 0.78);
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --line: rgba(255,255,255,0.10);
-      --accent: #ff9900;
-      --good: #22c55e;
-      --warn: #facc15;
-      --bad: #ef4444;
-      --blue: #38bdf8;
+      --ink: #050505;
+      --muted: #333;
+      --card: rgba(255, 246, 252, 0.92);
+      --green: #9fe484;
+      --orange: #f6a24b;
+      --shadow: 7px 7px 0 rgba(0,0,0,.92);
     }
 
     * { box-sizing: border-box; }
 
+    html, body { min-height: 100%; }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(255,153,0,0.16), transparent 32%),
-        radial-gradient(circle at top right, rgba(56,189,248,0.13), transparent 30%),
-        linear-gradient(180deg, #05070b, #0b1120 55%, #05070b);
-      color: var(--text);
-      min-height: 100vh;
-      padding: 24px;
+        radial-gradient(circle at 15% 18%, rgba(255,255,255,.25), transparent 22%),
+        linear-gradient(135deg, var(--green) 0%, #d7df73 48%, var(--orange) 100%);
+      padding: 22px 14px 36px;
     }
 
-    .wrap {
-      width: min(980px, 100%);
+    .page {
+      width: min(720px, 100%);
       margin: 0 auto;
-    }
-
-    .hero {
-      border: 1px solid var(--line);
-      background: linear-gradient(145deg, rgba(17,24,39,0.96), rgba(3,7,18,0.88));
-      border-radius: 28px;
-      padding: 26px;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.38);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto -80px -120px auto;
-      width: 260px;
-      height: 260px;
-      border-radius: 999px;
-      background: rgba(255,153,0,0.14);
-      filter: blur(8px);
-    }
-
-    .topline {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      position: relative;
-      z-index: 1;
+      text-align: center;
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .badge {
-      width: 52px;
-      height: 52px;
-      border-radius: 18px;
-      background: linear-gradient(145deg, #ff9900, #f97316);
-      color: #111827;
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 14px;
+      border-radius: 999px;
+      border: 4px solid #111;
+      background: #fff;
       display: grid;
       place-items: center;
+      overflow: hidden;
+      box-shadow: 0 3px 0 rgba(0,0,0,.2);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo-fallback {
       font-weight: 900;
-      font-size: 18px;
-      box-shadow: 0 12px 28px rgba(255,153,0,0.25);
+      font-size: 24px;
+      letter-spacing: -1px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(30px, 5vw, 50px);
-      letter-spacing: -1.4px;
+      font-size: clamp(32px, 6vw, 46px);
       line-height: 1;
+      font-weight: 900;
+      letter-spacing: -1.2px;
     }
 
-    .sub {
-      margin: 8px 0 0;
-      color: var(--muted);
-      font-size: 15px;
+    .handle {
+      margin: 8px 0 42px;
+      font-weight: 800;
+      font-size: 20px;
     }
 
-    .pill {
-      border: 1px solid rgba(255,153,0,0.28);
-      background: rgba(255,153,0,0.10);
-      color: #fed7aa;
-      padding: 9px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-
-    .notice {
-      margin-top: 22px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(56,189,248,0.08);
-      border: 1px solid rgba(56,189,248,0.20);
-      color: #dff7ff;
-      font-size: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .stat {
-      background: rgba(255,255,255,0.045);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 14px;
-    }
-
-    .stat b { display: block; font-size: 22px; }
-    .stat span { color: var(--muted); font-size: 12px; }
-
-    .section {
-      margin-top: 22px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      border-radius: 24px;
-      padding: 18px;
-      box-shadow: 0 18px 50px rgba(0,0,0,0.22);
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      gap: 12px;
-    }
-
-    h2 {
-      font-size: 18px;
-      margin: 0;
-      letter-spacing: -0.2px;
-    }
-
-    .hint {
-      color: var(--muted);
-      font-size: 12px;
+    .section-title {
+      margin: 0 0 18px;
+      font-size: 20px;
+      font-weight: 900;
     }
 
     .links {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 17px;
     }
 
-    a.tile {
-      text-decoration: none;
-      color: var(--text);
-      background: var(--card2);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 15px;
-      transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
-      min-height: 82px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    a.tile:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255,153,0,0.55);
-      background: rgba(55,65,81,0.92);
-    }
-
-    .tile-title {
-      display: flex;
+    .link-card {
+      min-height: 88px;
+      display: grid;
+      grid-template-columns: 76px 1fr 36px;
       align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 15px;
-    }
-
-    .tile-desc {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.35;
-    }
-
-    .tag {
-      font-size: 11px;
-      color: #111827;
-      background: var(--accent);
+      gap: 8px;
+      text-decoration: none;
+      color: #000;
+      background: var(--card);
+      border: 4px solid #050505;
       border-radius: 999px;
-      padding: 3px 7px;
-      white-space: nowrap;
+      box-shadow: var(--shadow);
+      padding: 10px 18px 10px 10px;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
     }
 
-    .tag.blue { background: var(--blue); }
-    .tag.good { background: var(--good); }
-    .tag.warn { background: var(--warn); }
+    .link-card:hover,
+    .link-card:focus-visible {
+      transform: translate(3px, 3px);
+      box-shadow: 4px 4px 0 rgba(0,0,0,.92);
+      background: rgba(255,255,255,.97);
+      outline: none;
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 34px;
+      background: #bdeaff;
+      overflow: hidden;
+      justify-self: center;
+    }
+
+    .icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .title {
+      text-align: center;
+      font-size: clamp(17px, 3.3vw, 22px);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .dots {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1;
+      transform: rotate(90deg);
+      color: #444;
+    }
 
     .footer {
-      color: var(--muted);
-      text-align: center;
-      font-size: 12px;
-      margin: 22px 0 4px;
+      margin-top: 34px;
+      padding: 18px 16px;
+      border: 3px solid #111;
+      border-radius: 26px;
+      background: rgba(255,255,255,.42);
+      font-weight: 800;
+      box-shadow: 5px 5px 0 rgba(0,0,0,.88);
     }
 
-    .searchbox {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: rgba(3,7,18,0.85);
-      color: var(--text);
-      outline: none;
-      margin-top: 18px;
-      font-size: 15px;
+    .small {
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #252525;
     }
 
-    .searchbox:focus { border-color: rgba(255,153,0,0.6); }
-
-    @media (max-width: 760px) {
-      body { padding: 14px; }
-      .hero { padding: 20px; border-radius: 24px; }
-      .topline { align-items: flex-start; flex-direction: column; }
-      .grid { grid-template-columns: 1fr; }
-      .links { grid-template-columns: 1fr; }
-      .pill { white-space: normal; }
+    @media (max-width: 520px) {
+      body { padding: 18px 9px 28px; }
+      .logo { width: 90px; height: 90px; }
+      .handle { margin-bottom: 34px; font-size: 17px; }
+      .link-card {
+        min-height: 74px;
+        grid-template-columns: 62px 1fr 28px;
+        border-width: 3px;
+        padding: 8px 13px 8px 8px;
+        box-shadow: 5px 5px 0 rgba(0,0,0,.92);
+      }
+      .icon { width: 48px; height: 48px; font-size: 28px; }
+      .dots { font-size: 24px; }
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="hero">
-      <div class="topline">
-        <div class="logo">
-          <div class="badge">CWL1</div>
-          <div>
-            <h1>CWL1 Ops Hub</h1>
-            <p class="sub">Fast access to key operational links, comms, tools, and shift resources.</p>
-          </div>
-        </div>
-        <div class="pill" id="todayPill">Live Ops Links</div>
-      </div>
+  <main class="page">
+    <!-- Replace logo.png with your uploaded CWL1 logo file, or leave fallback text. -->
+    <div class="logo">
+      <img src="logo.png" alt="CWL1 logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;logo-fallback&quot;>CWL1</div>'">
+    </div>
 
-      <input id="search" class="searchbox" type="search" placeholder="Search tools, comms, EOS, FCLM, Rodeo, SSPOT..." />
+    <h1>CWL1 Site News</h1>
+    <div class="handle">@cwlinformationportal</div>
 
-      <div class="notice">
-        Use this page as a controlled communications hub. Avoid posting confidential metrics, associate personal data, or sensitive internal information on any public host.
-      </div>
+    <h2 class="section-title">Hot Topics</h2>
 
-      <div class="grid">
-        <div class="stat"><b id="clock">--:--</b><span>Current time</span></div>
-        <div class="stat"><b>Ops</b><span>Shift communication links</span></div>
-        <div class="stat"><b>Mobile</b><span>QR-friendly landing page</span></div>
-      </div>
-    </section>
+    <nav class="links" aria-label="CWL1 links">
+      <!-- Upload files to GitHub, then replace href with the file name or folder path. Example: href="uploads/weekly-brief-wk20.pdf" -->
 
-    <section class="section" data-section>
-      <div class="section-head">
-        <h2>Daily Communications</h2>
-        <span class="hint">Team updates and shift messages</span>
-      </div>
-      <div class="links">
-        <a class="tile" href="#" data-title="Start of Shift Brief">
-          <div class="tile-title">Start of Shift Brief <span class="tag good">Comms</span></div>
-          <div class="tile-desc">Daily plan, safety focus, attendance reminders, and priority callouts.</div>
-        </a>
-        <a class="tile" href="#" data-title="End of Shift Message">
-          <div class="tile-title">End of Shift Message <span class="tag warn">EOS</span></div>
-          <div class="tile-desc">Return equipment, charge batteries, complete final scan, and clear work areas.</div>
-        </a>
-        <a class="tile" href="#" data-title="Safety Updates">
-          <div class="tile-title">Safety Updates <span class="tag blue">Safety</span></div>
-          <div class="tile-desc">Current safety focus, near-miss learnings, and safe working reminders.</div>
-        </a>
-        <a class="tile" href="#" data-title="Team Shoutouts">
-          <div class="tile-title">Team Shoutouts <span class="tag">People</span></div>
-          <div class="tile-desc">Recognition links for low NPT, strong finish, support, and quality behaviours.</div>
-        </a>
-      </div>
-    </section>
+      <a class="link-card" href="uploads/weekly-brief-wk20.pdf" target="_blank" rel="noopener">
+        <span class="icon">🎉</span>
+        <span class="title">CWL1: Weekly Brief WK20</span>
+        <span class="dots">⋮</span>
+      </a>
 
-    <section class="section" data-section>
-      <div class="section-head">
-        <h2>Core Ops Tools</h2>
-        <span class="hint">Replace # with your approved internal URLs</span>
-      </div>
-      <div class="links">
-        <a class="tile" href="https://flow-sortation-eu.amazon.com/CWL1/#/buffer" data-title="Flow Sortation">
-          <div class="tile-title">Flow Sortation <span class="tag">Flow</span></div>
-          <div class="tile-desc">Current status, buffer checks, batch visibility, and operational flow.</div>
-        </a>
-        <a class="tile" href="https://rodeo-dub.amazon.com/CWL1/ExSD" data-title="Rodeo ExSD">
-          <div class="tile-title">Rodeo ExSD <span class="tag blue">Rodeo</span></div>
-          <div class="tile-desc">CPT, process paths, shipment state, dwell checks, and scannable research.</div>
-        </a>
-        <a class="tile" href="https://fclm-portal.amazon.com/reports/timeOnTask" data-title="FCLM Time on Task">
-          <div class="tile-title">FCLM Time on Task <span class="tag warn">FCLM</span></div>
-          <div class="tile-desc">NPT review, associate time, process/function corrections, and batch entry.</div>
-        </a>
-        <a class="tile" href="https://sspot.dub.corp.amazon.com/" data-title="SSPOT Scheduling">
-          <div class="tile-title">SSPOT Scheduling <span class="tag good">HC</span></div>
-          <div class="tile-desc">Roster checks, scheduled headcount, shift pattern view, and labour planning.</div>
-        </a>
-      </div>
-    </section>
+      <a class="link-card" href="uploads/cwlottery-may.pdf" target="_blank" rel="noopener">
+        <span class="icon">🎱</span>
+        <span class="title">CWLottery - MAY</span>
+        <span class="dots">⋮</span>
+      </a>
 
-    <section class="section" data-section>
-      <div class="section-head">
-        <h2>CWL1 Custom Tools</h2>
-        <span class="hint">For your scripts, dashboards, and local SOPs</span>
-      </div>
-      <div class="links">
-        <a class="tile" href="#" data-title="Pick EOS Builder">
-          <div class="tile-title">Pick EOS Builder <span class="tag warn">Report</span></div>
-          <div class="tile-desc">Build standardised Pick End of Shift summaries and performance callouts.</div>
-        </a>
-        <a class="tile" href="#" data-title="Virtual Pick Lead">
-          <div class="tile-title">Virtual Pick Lead <span class="tag blue">VPL</span></div>
-          <div class="tile-desc">PickComplete, ESD watcher, FANS messages, and scannable follow-up logic.</div>
-        </a>
-        <a class="tile" href="#" data-title="Headcount Condenser">
-          <div class="tile-title">Headcount Condenser <span class="tag good">SSPOT</span></div>
-          <div class="tile-desc">Condensed scheduled headcount by Outbound, CR, Inbound, and Support Functions.</div>
-        </a>
-        <a class="tile" href="#" data-title="Shipment Dwell Locator">
-          <div class="tile-title">Shipment Dwell Locator <span class="tag">Dwell</span></div>
-          <div class="tile-desc">Find dwelling shipments, quantities, process paths, and high-priority follow-ups.</div>
-        </a>
-      </div>
-    </section>
+      <a class="link-card" href="uploads/cwl1-installment.pdf" target="_blank" rel="noopener">
+        <span class="icon">📰</span>
+        <span class="title">CWL1 InSTALLment</span>
+        <span class="dots">⋮</span>
+      </a>
 
-    <section class="section" data-section>
-      <div class="section-head">
-        <h2>Quick Message Templates</h2>
-        <span class="hint">Copy into Slack, Chime, AtoZ, or VOA response drafts</span>
-      </div>
-      <div class="links">
-        <a class="tile" href="javascript:copyText('Please return all equipment, place batteries on charge, and complete your final productive scan no later than 3 minutes before EOS. Thank you.')" data-title="Copy EOS Reminder">
-          <div class="tile-title">Copy EOS Reminder <span class="tag warn">Copy</span></div>
-          <div class="tile-desc">Standard end-of-shift equipment and final scan reminder.</div>
-        </a>
-        <a class="tile" href="javascript:copyText('Strong work today. Please keep focus on safety, quality, and making every scan count through the final part of shift.')" data-title="Copy Strong Finish">
-          <div class="tile-title">Copy Strong Finish <span class="tag good">Copy</span></div>
-          <div class="tile-desc">Simple strong-finish message for team channels.</div>
-        </a>
-      </div>
-    </section>
+      <a class="link-card" href="uploads/beyond-the-badge.pdf" target="_blank" rel="noopener">
+        <span class="icon">❔</span>
+        <span class="title">Take Part - Beyond the Badge</span>
+        <span class="dots">⋮</span>
+      </a>
 
-    <p class="footer">CWL1 Ops Hub · Static page template · Keep confidential data off public hosting</p>
+      <a class="link-card" href="uploads/peer-recognition.pdf" target="_blank" rel="noopener">
+        <span class="icon">🏅</span>
+        <span class="title">Nominate a Peer for Recognition</span>
+        <span class="dots">⋮</span>
+      </a>
+    </nav>
+
+    <div class="footer">
+      CWL1 Communications Hub
+      <div class="small">Internal links and approved uploads only</div>
+    </div>
   </main>
-
-  <script>
-    function tick() {
-      const now = new Date();
-      document.getElementById('clock').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      document.getElementById('todayPill').textContent = now.toLocaleDateString([], { weekday: 'long', day: '2-digit', month: 'short' });
-    }
-    tick();
-    setInterval(tick, 1000);
-
-    function copyText(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Copied to clipboard');
-      }).catch(() => {
-        prompt('Copy this text:', text);
-      });
-    }
-
-    const search = document.getElementById('search');
-    search.addEventListener('input', () => {
-      const q = search.value.trim().toLowerCase();
-      document.querySelectorAll('[data-section]').forEach(section => {
-        let visibleCount = 0;
-        section.querySelectorAll('.tile').forEach(tile => {
-          const text = tile.innerText.toLowerCase();
-          const show = !q || text.includes(q);
-          tile.style.display = show ? 'flex' : 'none';
-          if (show) visibleCount++;
-        });
-        section.style.display = visibleCount ? 'block' : 'none';
-      });
-    });
-  </script>
 </body>
 </html>
